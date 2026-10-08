@@ -71,3 +71,38 @@ Desarrollar y desplegar la primera versión (MVP) de KomoYa, un marketplace web 
   - El sistema de envíos en esta versión es centralizado; los comercios no gestionarán sus propias entregas.
   - Se requiere conexión constante a servicios de fondo (colas y _scheduler_) para procesar vencimientos de reservas (15 min), notificaciones transaccionales y comprobantes fiscales.
   - La plataforma debe estar desplegada en un entorno con soporte HTTPS estricto para el correcto funcionamiento de los webhooks de pago (Tilopay/PayPal).
+
+### Sección 04: Ciclo de vida del proyecto y primer Sprint
+
+#### 1. Mapa del Ciclo de Vida del Proyecto
+
+- **Enfoque del Ciclo de Vida (Híbrido):** Se utilizará un enfoque híbrido. Emplearemos una **fase predictiva** al inicio para definir la arquitectura base del sistema (bases de datos y seguridad), ya que son elementos predecibles. Paralelamente, utilizaremos un **enfoque adaptativo (ágil con Scrum)** durante la ejecución para integrar módulos que requieren validación constante (pasarelas de pago y logística de envíos).
+- **Fases del Proyecto:**
+  1.  **Inicio:** Definición del problema, conceptualización del MVP, selección de comercios locales e inicio del _Project Charter_.
+  2.  **Planificación:** Diseño de la arquitectura, estructuración de la base de datos y creación del _Product Backlog_ inicial.
+  3.  **Ejecución (Iterativa):** Desarrollo del software mediante Sprints. Construcción del entorno, seguridad, catálogo, carrito de compras y pasarela de pago.
+  4.  **Monitoreo y Control:** Pruebas de integración, validación de dependencias externas y ajustes continuos en las _Sprint Reviews_.
+  5.  **Cierre:** Despliegue en producción, demostración (Demo) y entrega del Expediente del Proyecto.
+
+---
+
+#### 2. Planificación del Primer Sprint
+
+- **Duración del Sprint:** 2 semanas.
+- **Sprint Goal (Objetivo del Sprint):** Establecer los cimientos técnicos de la plataforma configurando el entorno de desarrollo y construyendo los módulos fundamentales de autenticación (Login), seguridad de rutas y navegación básica (Dashboard).
+
+**Sprint Backlog (Historias y tareas que se atacarán primero):**
+
+|   ID   | Tarea / Historia a desarrollar                          | Prioridad |
+| :----: | :------------------------------------------------------ | :-------: |
+| **1**  | Configurar el entorno de desarrollo del proyecto.       |   Alta    |
+| **3**  | Crear la interfaz gráfica del Login.                    |   Alta    |
+| **4**  | Implementar la validación de credenciales.              |   Alta    |
+| **5**  | Implementar el manejo de sesiones.                      |   Alta    |
+| **6**  | Desarrollar la funcionalidad de cerrar sesión (Logout). |   Alta    |
+| **7**  | Diseñar la interfaz gráfica del Dashboard.              |   Alta    |
+| **9**  | Proteger las rutas para usuarios autenticados.          |   Alta    |
+| **8**  | Implementar la navegación principal del Dashboard.      |   Media   |
+| **10** | Mostrar información básica del usuario en el Dashboard. |   Media   |
+
+- **Justificación de selección:** Se eligió atacar estas historias primero porque representan la base técnica indispensable del sistema. No se puede avanzar a la programación de módulos de ventas o perfiles de comercio sin antes tener un entorno funcional y un sistema de autenticación seguro y probado que controle los accesos al Dashboard.
