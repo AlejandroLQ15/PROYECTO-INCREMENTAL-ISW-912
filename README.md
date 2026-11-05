@@ -72,7 +72,6 @@ Desarrollar y desplegar la primera versión (MVP) de KomoYa, un marketplace web 
   - Se requiere conexión constante a servicios de fondo (colas y _scheduler_) para procesar vencimientos de reservas (15 min), notificaciones transaccionales y comprobantes fiscales.
   - La plataforma debe estar desplegada en un entorno con soporte HTTPS estricto para el correcto funcionamiento de los webhooks de pago (Tilopay/PayPal).
 
-
 ### Sección 02: Contexto Organizacional
 
 #### 1. Descripción del Entorno Comercial
@@ -138,16 +137,16 @@ Los interesados son las personas, grupos u organizaciones que participan en el d
 
 En el caso de KomoYa, se identifican los siguientes interesados:
 
-| Interesado | Función o interés dentro del proyecto | Nivel de influencia |
-| :--- | :--- | :---: |
-| Product Owner | Definir las necesidades del producto y establecer las prioridades del Product Backlog. | Alta |
-| Scrum Master / Developer | Facilitar la aplicación de Scrum y participar en el desarrollo del sistema. | Alta |
-| Comercios locales | Ofrecer sus productos mediante la plataforma y gestionar los pedidos recibidos. | Alta |
-| Clientes | Consultar productos, comparar precios y realizar compras mediante KomoYa. | Media |
-| Administrador de KomoYa | Administrar la plataforma, supervisar los pedidos y coordinar las entregas. | Alta |
-| Tilopay y PayPal | Proporcionar los servicios necesarios para procesar pagos electrónicos. | Media |
-| FacturaEnCR | Proporcionar los servicios de emisión de comprobantes electrónicos. | Media |
-| Proveedores de infraestructura | Proporcionar los servicios tecnológicos necesarios para el funcionamiento del sistema. | Media |
+| Interesado                     | Función o interés dentro del proyecto                                                  | Nivel de influencia |
+| :----------------------------- | :------------------------------------------------------------------------------------- | :-----------------: |
+| Product Owner                  | Definir las necesidades del producto y establecer las prioridades del Product Backlog. |        Alta         |
+| Scrum Master / Developer       | Facilitar la aplicación de Scrum y participar en el desarrollo del sistema.            |        Alta         |
+| Comercios locales              | Ofrecer sus productos mediante la plataforma y gestionar los pedidos recibidos.        |        Alta         |
+| Clientes                       | Consultar productos, comparar precios y realizar compras mediante KomoYa.              |        Media        |
+| Administrador de KomoYa        | Administrar la plataforma, supervisar los pedidos y coordinar las entregas.            |        Alta         |
+| Tilopay y PayPal               | Proporcionar los servicios necesarios para procesar pagos electrónicos.                |        Media        |
+| FacturaEnCR                    | Proporcionar los servicios de emisión de comprobantes electrónicos.                    |        Media        |
+| Proveedores de infraestructura | Proporcionar los servicios tecnológicos necesarios para el funcionamiento del sistema. |        Media        |
 
 Los niveles de influencia representan una clasificación inicial y podrán ajustarse conforme avance el proyecto.
 
@@ -157,12 +156,12 @@ Para identificar la importancia de cada interesado y determinar la manera adecua
 
 Esta herramienta clasifica a los interesados según su capacidad para influir en el proyecto y su nivel de interés en los resultados.
 
-| Clasificación | Interesados | Estrategia |
-| :--- | :--- | :--- |
+| Clasificación             | Interesados                                                                 | Estrategia                                                                       |
+| :------------------------ | :-------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
 | Alto poder / Alto interés | Product Owner, Scrum Master, administrador y comercios participantes clave. | Gestionar de cerca, involucrándolos en las decisiones y revisiones del proyecto. |
-| Alto poder / Bajo interés | Proveedores externos con capacidad de afectar servicios esenciales. | Mantener satisfechos y verificar las condiciones de los servicios contratados. |
-| Bajo poder / Alto interés | Clientes y usuarios potenciales. | Mantener informados y recopilar sus necesidades y opiniones. |
-| Bajo poder / Bajo interés | Actores indirectos que no participan activamente en el proyecto. | Monitorear y mantener una comunicación cuando sea necesario. |
+| Alto poder / Bajo interés | Proveedores externos con capacidad de afectar servicios esenciales.         | Mantener satisfechos y verificar las condiciones de los servicios contratados.   |
+| Bajo poder / Alto interés | Clientes y usuarios potenciales.                                            | Mantener informados y recopilar sus necesidades y opiniones.                     |
+| Bajo poder / Bajo interés | Actores indirectos que no participan activamente en el proyecto.            | Monitorear y mantener una comunicación cuando sea necesario.                     |
 
 Esta clasificación permitirá establecer estrategias de comunicación y participación de acuerdo con las necesidades de cada grupo.
 
@@ -212,15 +211,15 @@ Durante el desarrollo de KomoYa se deberán considerar diferentes restricciones 
 
 Se identifican los siguientes riesgos que podrían afectar el desarrollo o funcionamiento de KomoYa:
 
-| ID | Riesgo | Impacto estimado | Medida preventiva |
-| :---: | :--- | :---: | :--- |
-| R01 | Dificultades en la integración con las pasarelas de pago. | Alto | Realizar pruebas de integración en entornos de prueba antes de habilitar pagos reales. |
-| R02 | Fallos o interrupciones de los servicios externos. | Alto | Implementar registros de errores y mecanismos de recuperación. |
-| R03 | Información desactualizada del inventario de los comercios. | Alto | Validar la disponibilidad de los productos antes de confirmar las compras. |
-| R04 | Retrasos en el desarrollo de funcionalidades. | Medio | Priorizar las funcionalidades esenciales y realizar seguimiento mediante Sprints. |
-| R05 | Baja participación de comercios locales. | Alto | Establecer comunicación con comercios interesados y validar sus necesidades. |
-| R06 | Dificultades en la coordinación de entregas. | Medio | Definir zonas de cobertura, tarifas y procedimientos de entrega. |
-| R07 | Problemas de seguridad o acceso no autorizado. | Alto | Implementar autenticación, autorización y validaciones de seguridad. |
+| ID  | Riesgo                                                      | Impacto estimado | Medida preventiva                                                                      |
+| :-: | :---------------------------------------------------------- | :--------------: | :------------------------------------------------------------------------------------- |
+| R01 | Dificultades en la integración con las pasarelas de pago.   |       Alto       | Realizar pruebas de integración en entornos de prueba antes de habilitar pagos reales. |
+| R02 | Fallos o interrupciones de los servicios externos.          |       Alto       | Implementar registros de errores y mecanismos de recuperación.                         |
+| R03 | Información desactualizada del inventario de los comercios. |       Alto       | Validar la disponibilidad de los productos antes de confirmar las compras.             |
+| R04 | Retrasos en el desarrollo de funcionalidades.               |      Medio       | Priorizar las funcionalidades esenciales y realizar seguimiento mediante Sprints.      |
+| R05 | Baja participación de comercios locales.                    |       Alto       | Establecer comunicación con comercios interesados y validar sus necesidades.           |
+| R06 | Dificultades en la coordinación de entregas.                |      Medio       | Definir zonas de cobertura, tarifas y procedimientos de entrega.                       |
+| R07 | Problemas de seguridad o acceso no autorizado.              |       Alto       | Implementar autenticación, autorización y validaciones de seguridad.                   |
 
 Los riesgos identificados serán revisados durante el desarrollo del proyecto para determinar si requieren nuevas acciones preventivas o correctivas.
 
@@ -258,3 +257,41 @@ Los riesgos identificados serán revisados durante el desarrollo del proyecto pa
 | **10** | Mostrar información básica del usuario en el Dashboard. |   Media   |
 
 - **Justificación de selección:** Se eligió atacar estas historias primero porque representan la base técnica indispensable del sistema. No se puede avanzar a la programación de módulos de ventas o perfiles de comercio sin antes tener un entorno funcional y un sistema de autenticación seguro y probado que controle los accesos al Dashboard.
+
+### Sección 05: Backlog inicial, Sprint Backlog y Mecanismo de Seguimiento
+
+#### 1. Backlog Inicial (Product Backlog)
+
+Lista de alto nivel con las historias de usuario y requerimientos principales para alcanzar el MVP de KomoYa, priorizados por valor de negocio:
+
+|    ID     | Historia de Usuario / Requerimiento                                                      | Prioridad |
+| :-------: | :--------------------------------------------------------------------------------------- | :-------: |
+| **HU-01** | Como Administrador, quiero gestionar los accesos y roles (Admin, Cliente, Comercio).     |   Alta    |
+| **HU-02** | Como Comercio, quiero registrar, editar y controlar las existencias de mis productos.    |   Alta    |
+| **HU-03** | Como Cliente, quiero explorar el catálogo de productos y ver su disponibilidad.          |   Alta    |
+| **HU-04** | Como Cliente, quiero agregar productos de distintos comercios a un carrito único.        |   Alta    |
+| **HU-05** | Como Cliente, quiero procesar el pago unificado mediante Tilopay o PayPal.               |   Alta    |
+| **HU-06** | Como Administrador, quiero que el sistema calcule la distancia y tarifa de envío (OSRM). |   Media   |
+| **HU-07** | Como Sistema, quiero notificar los pedidos y emitir facturas electrónicas (FacturaEnCR). |   Media   |
+
+#### 2. Sprint Backlog (Sprint 2: Gestión de Catálogo y Carrito)
+
+_(Nota: Asumiendo que el Sprint 1 cubrió entorno y seguridad como se definió en la Sección 04, este Sprint Backlog aborda el siguiente incremento de valor)._
+
+**Sprint Goal:** Permitir a los comercios administrar su inventario y a los clientes agregar productos a un carrito unificado con validación de existencias.
+
+| ID Tarea | Descripción de la Tarea (Desglose técnico)                                |  Estado   | Estimación |
+| :------: | :------------------------------------------------------------------------ | :-------: | :--------: |
+| **T-01** | Crear modelos, migraciones y _seeders_ para Productos y Categorías.       | Por hacer |   3 hrs    |
+| **T-02** | Desarrollar el CRUD para que los Comercios administren su inventario.     | Por hacer |   5 hrs    |
+| **T-03** | Diseñar la interfaz del catálogo (Vista del Cliente) con filtros básicos. | Por hacer |   4 hrs    |
+| **T-04** | Crear la lógica del Carrito de Compras en la base de datos/sesión.        | Por hacer |   4 hrs    |
+| **T-05** | Implementar validación de _stock_ al agregar un producto al carrito.      | Por hacer |   2 hrs    |
+
+#### 3. Mecanismo de Seguimiento
+
+Para asegurar la transparencia y la adaptación continua durante el proyecto, el equipo utilizará las siguientes estrategias de control:
+
+- **Tablero Kanban (GitHub Projects o Trello):** Se gestionará el flujo de tareas mediante un tablero visual con las columnas: _Backlog_, _Por Hacer (To Do)_, _En Progreso (In Progress)_, _En Revisión (Review)_ y _Terminado (Done)_.
+- **Daily Scrum (Sincronización):** Reuniones cortas de seguimiento para responder tres preguntas clave: ¿Qué se logró desde la última reunión?, ¿Qué se hará a continuación? y ¿Existen bloqueos técnicos?
+- **Trazabilidad en el Repositorio:** Todo el código subido a GitHub mediante _commits_ o _Pull Requests_ deberá incluir la referencia al ID de la tarea en la que se está trabajando (por ejemplo: `feat: validación de stock en carrito T-05`).
