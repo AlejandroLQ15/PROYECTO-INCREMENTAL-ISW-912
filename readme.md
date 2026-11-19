@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # UNIVERSIDAD TÉCNICA NACIONAL
 
@@ -18,8 +18,6 @@ Rudy Barboza
 
 # EXPEDIENTE DEL PROYECTO
 
-### Sección 00: Portada e identificación del equipo
-
 ## KomoYa – Marketplace Multicomercio
 
 <br><br>
@@ -38,7 +36,8 @@ Comunidad y Comercios Locales de Pital y zonas aledañas
 
 <br><br><br>
 
-
+**Ciudad Quesada, San Carlos, Alajuela**
+**III Cuatrimestre, 2026**
 
 </div>
 
@@ -46,301 +45,322 @@ Comunidad y Comercios Locales de Pital y zonas aledañas
 
 ### Sección 01: Problema, oportunidad y Product Goal
 
-#### 1. Problema
+**1. Definición del Problema Real**
 
-En Pital y sus alrededores, adquirir productos de distintos comercios representa un desafío para los consumidores, ya que, en muchas ocasiones, deben desplazarse largas distancias para consultar precios, verificar la disponibilidad de productos y realizar sus compras en diferentes establecimientos. Esta situación se agrava debido a la limitada disponibilidad y frecuencia de los servicios de transporte en algunas comunidades, lo que dificulta aún más el acceso a productos de primera necesidad y otros artículos para el hogar, generando mayores gastos de traslado, inversión de tiempo e inconvenientes para los habitantes de la zona.
+En la zona de Pital y sus alrededores, los consumidores se enfrentan a un proceso de compra fragmentado cuando necesitan adquirir productos de diferentes rubros (como abarrotes, ferretería o farmacia). Actualmente, para comparar precios y verificar existencias, el cliente debe visitar físicamente múltiples comercios o contactarlos uno por uno. Además, si decide comprar en varios lugares, debe coordinar y pagar múltiples servicios de entrega (express), lo que incrementa los costos logísticos y el tiempo de espera, desincentivando la compra en los comercios locales.
 
-#### 2. Oportunidad
+**2. La Oportunidad**
 
-Con Komo-Ya buscamos reunir los precios, existencias y ofertas de los comercios locales en una plataforma donde los clientes puedan comparar productos, realizar una compra multicomercio y recibir una entrega consolidada.
+Existe la oportunidad de digitalizar y unificar el ecosistema comercial de la zona mediante una plataforma centralizada (KomoYa). Esto permitirá a los comercios locales exponer su inventario en un canal digital compartido, y a los usuarios consolidar sus compras de diferentes tiendas en un único carrito, gestionando un solo pago y recibiendo todos sus productos mediante una entrega unificada operada por la administración.
 
-#### 3. Product Goal
+**3. Product Goal**
 
-Desarrollar una primera versión web de Komo-Ya que permita consultar productos, reunir ofertas de varios comercios en un carrito, aprobar el total confirmado, realizar un pago unificado y consultar el estado de la entrega.
+Desarrollar y desplegar la primera versión (MVP) de KomoYa, un marketplace web multicomercio que permita a los habitantes de Pital y zonas aledañas comparar ofertas, confirmar disponibilidad y realizar compras unificadas de múltiples comercios locales, integrando pasarelas de pago nacionales y un sistema de envío centralizado operado por el administrador.
 
-#### 4. Descripción del proyecto
+**4. Project Charter**
 
-Desarrollaremos un marketplace para clientes y comercios de Pital y zonas aledañas. Contaremos con tres roles principales: administrador, cliente y comercio. El administrador coordinará las compras y las entregas, y recibirá el pago completo del pedido.
+- **Descripción del Proyecto:** Construcción de una plataforma web bajo arquitectura MVC (Laravel/PHP, Node.js, PostgreSQL) que operará como un marketplace para comercios locales. En esta primera versión, la administración del sistema absorberá el rol de operador logístico exclusivo.
+- **Alcance Inicial (MVP):**
+  - Módulo de roles diferenciados: Administrador (operador), Cliente y Comercios (supermercado, ferretería, farmacia).
+  - Gestión de carrito multicomercio con validación de existencias previas al pago.
+  - Integración de pagos en colones (Tilopay) y alternativa internacional (PayPal).
+  - Integración con FacturaEnCR para la emisión de tiquetes/facturas electrónicas de los servicios de envío.
+  - Cálculo automatizado de distancias y tarifas de envío usando OSRM y geocodificación (Tarifa base: ₡350/km, mínimo ₡1.000, radio máximo 50 km).
+  - Sincronización automatizada del tipo de cambio del BCCR (indicador 318).
+- **Restricciones de Alto Nivel:**
+  - El sistema de envíos en esta versión es centralizado; los comercios no gestionarán sus propias entregas.
+  - Se requiere conexión constante a servicios de fondo (colas y _scheduler_) para procesar vencimientos de reservas (15 min), notificaciones transaccionales y comprobantes fiscales.
+  - La plataforma debe estar desplegada en un entorno con soporte HTTPS estricto para el correcto funcionamiento de los webhooks de pago (Tilopay/PayPal).
 
-### Sección 02: Contexto organizacional y restricciones
+### Sección 02: Contexto Organizacional
 
-#### 1. Contexto
+#### 1. Descripción del Entorno Comercial
 
-Los comercios locales atienden principalmente de forma presencial y mediante canales como WhatsApp y redes sociales. Con KomoYa buscamos facilitar su acceso a un canal compartido de ventas y reducir la coordinación que requiere una compra en varios negocios.
+El proyecto KomoYa surge como una iniciativa para facilitar la comercialización de productos de los negocios locales de Pital de San Carlos y zonas aledañas.
 
-Organizaremos los productos en un catálogo central administrado por la plataforma. Cada comercio vinculará sus ofertas con ese catálogo y gestionará sus precios, existencias y disponibilidad.
+En esta zona existen diferentes establecimientos comerciales, como supermercados, pulperías, ferreterías, farmacias y otros negocios que ofrecen productos necesarios para la población.
 
-#### 2. Restricciones
+Sin embargo, estos comercios funcionan de manera independiente, lo que obliga a los consumidores a visitar diferentes establecimientos cuando necesitan adquirir productos de distintas categorías.
 
-- Utilizaremos Laravel, PHP y PostgreSQL, con Blade, Tailwind CSS y Alpine.js para la interfaz.
-- Usaremos Node.js y Vite para compilar los recursos de la interfaz.
-- Integraremos SINPE Móvil, Tilopay y PayPal como medios de pago.
-- La administración coordinará las entregas; los comercios no tendrán repartidores dentro de esta versión.
-- La cobertura inicial será de hasta 50 km desde el punto de operación en Pital.
-- El costo de envío considerará distancia, comercios, cantidad de productos y peso.
-- Protegeremos los comprobantes y documentos mediante acceso autorizado.
-- Necesitaremos alojamiento con HTTPS, almacenamiento, colas y tareas programadas.
-- Disponemos de aproximadamente 2 horas semanales por integrante, para un total de 4 horas de equipo por semana.
+KomoYa busca integrar estos negocios en una plataforma digital compartida, permitiendo que los consumidores consulten productos, comparen precios y realicen compras en diferentes comercios mediante un único proceso de compra.
 
-### Sección 03: Interesados / stakeholders
+#### 2. Situación Actual de los Comercios Locales
 
-| Interesado | Interés o responsabilidad | Influencia | Comunicación |
-| :--- | :--- | :--- | :--- |
-| Yunior Martínez, Product Owner / Developer | Priorizar necesidades y revisar el alcance | Alta | Revisión del backlog y de cada Sprint |
-| Jose Alejandro López, Scrum Master / Developer | Organizar el trabajo y dar seguimiento a impedimentos | Alta | Seguimiento del equipo |
-| Administrador de KomoYa | Coordinar pedidos, pagos y entregas | Alta | Revisión del flujo operativo |
-| Comercios y colaboradores | Publicar ofertas y confirmar pedidos | Alta | Demostraciones y consultas |
-| Clientes | Comprar y conocer el estado de sus pedidos | Media | Pruebas de uso y comentarios |
-| Docente | Evaluar el expediente del proyecto | Alta | Entregas académicas |
-| Proveedores de servicios | Facilitar pagos, alojamiento y otras integraciones | Alta | Consultas técnicas y de contratación |
+Actualmente, gran parte de las actividades comerciales de la zona se realizan mediante la atención presencial en los establecimientos.
 
-Mantendremos una comunicación cercana con los interesados de mayor influencia y recogeremos comentarios de clientes y comercios para ajustar las prioridades.
+Algunos negocios también utilizan herramientas digitales, como WhatsApp y redes sociales, para promocionar sus productos, atender consultas y recibir pedidos.
+
+No obstante, estas herramientas no siempre permiten consultar inventarios actualizados, comparar productos entre establecimientos o gestionar compras en múltiples comercios de manera centralizada.
+
+Esto representa una oportunidad para implementar una solución tecnológica que facilite tanto la comercialización de productos como el acceso de los consumidores a los negocios locales.
+
+#### 3. Necesidades Identificadas
+
+A partir del problema planteado, se identifican las siguientes necesidades:
+
+- Facilitar el acceso a los productos ofrecidos por los comercios locales.
+- Permitir que los consumidores consulten precios y disponibilidad sin desplazarse físicamente.
+- Centralizar las compras de diferentes establecimientos en un único carrito.
+- Reducir los tiempos que los consumidores destinan a realizar sus compras.
+- Ofrecer diferentes métodos de pago electrónicos.
+- Implementar un sistema de entregas centralizado.
+- Brindar a los comercios una herramienta digital para administrar sus productos y pedidos.
+- Mejorar la visibilidad de los pequeños y medianos comercios de la zona.
+
+Estas necesidades constituyen una base inicial para definir las funcionalidades del sistema y deberán validarse progresivamente con los usuarios y comercios participantes.
+
+#### 4. Factores que Influyen en el Proyecto
+
+**Factores Tecnológicos:**
+
+El funcionamiento de KomoYa dependerá de la disponibilidad de conexión a Internet, los servicios de alojamiento web y la integración con plataformas externas para procesar pagos y emitir comprobantes electrónicos.
+
+**Factores Económicos:**
+
+El proyecto debe considerar los costos relacionados con el alojamiento del sistema, el mantenimiento de la plataforma, las comisiones de las pasarelas de pago y la operación del servicio de entregas.
+
+**Factores Operativos:**
+
+La administración de KomoYa será responsable de coordinar las entregas de los pedidos. Por esta razón, será necesario considerar las distancias entre comercios, los tiempos de preparación y la disponibilidad del servicio de transporte.
+
+**Factores Sociales:**
+
+La aceptación de la plataforma dependerá de la confianza de los consumidores y comerciantes, así como de su disposición para utilizar herramientas digitales en los procesos de compra y venta.
+
+---
+
+### Sección 03: Mapa de Interesados y Restricciones
+
+#### 1. Identificación de los Interesados
+
+Los interesados son las personas, grupos u organizaciones que participan en el desarrollo del proyecto o que pueden verse afectados por sus resultados.
+
+En el caso de KomoYa, se identifican los siguientes interesados:
+
+| Interesado                     | Función o interés dentro del proyecto                                                  | Nivel de influencia |
+| :----------------------------- | :------------------------------------------------------------------------------------- | :-----------------: |
+| Product Owner                  | Definir las necesidades del producto y establecer las prioridades del Product Backlog. |        Alta         |
+| Scrum Master / Developer       | Facilitar la aplicación de Scrum y participar en el desarrollo del sistema.            |        Alta         |
+| Comercios locales              | Ofrecer sus productos mediante la plataforma y gestionar los pedidos recibidos.        |        Alta         |
+| Clientes                       | Consultar productos, comparar precios y realizar compras mediante KomoYa.              |        Media        |
+| Administrador de KomoYa        | Administrar la plataforma, supervisar los pedidos y coordinar las entregas.            |        Alta         |
+| Tilopay y PayPal               | Proporcionar los servicios necesarios para procesar pagos electrónicos.                |        Media        |
+| FacturaEnCR                    | Proporcionar los servicios de emisión de comprobantes electrónicos.                    |        Media        |
+| Proveedores de infraestructura | Proporcionar los servicios tecnológicos necesarios para el funcionamiento del sistema. |        Media        |
+
+Los niveles de influencia representan una clasificación inicial y podrán ajustarse conforme avance el proyecto.
+
+#### 2. Matriz de Poder e Interés
+
+Para identificar la importancia de cada interesado y determinar la manera adecuada de gestionar su participación, se utilizará una matriz de poder e interés.
+
+Esta herramienta clasifica a los interesados según su capacidad para influir en el proyecto y su nivel de interés en los resultados.
+
+| Clasificación             | Interesados                                                                 | Estrategia                                                                       |
+| :------------------------ | :-------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
+| Alto poder / Alto interés | Product Owner, Scrum Master, administrador y comercios participantes clave. | Gestionar de cerca, involucrándolos en las decisiones y revisiones del proyecto. |
+| Alto poder / Bajo interés | Proveedores externos con capacidad de afectar servicios esenciales.         | Mantener satisfechos y verificar las condiciones de los servicios contratados.   |
+| Bajo poder / Alto interés | Clientes y usuarios potenciales.                                            | Mantener informados y recopilar sus necesidades y opiniones.                     |
+| Bajo poder / Bajo interés | Actores indirectos que no participan activamente en el proyecto.            | Monitorear y mantener una comunicación cuando sea necesario.                     |
+
+Esta clasificación permitirá establecer estrategias de comunicación y participación de acuerdo con las necesidades de cada grupo.
+
+#### 3. Estrategia de Comunicación con los Interesados
+
+Para mantener una comunicación adecuada durante el desarrollo de KomoYa, se establecen los siguientes mecanismos:
+
+- **Equipo de desarrollo:** reuniones periódicas para revisar avances, identificar dificultades y organizar las actividades del Sprint.
+- **Product Owner:** revisión continua del Product Backlog y definición de prioridades según las necesidades del producto.
+- **Comercios participantes:** comunicación directa para recopilar requisitos, validar funcionalidades y atender observaciones.
+- **Clientes:** recopilación de opiniones mediante pruebas del sistema, encuestas y comentarios sobre la experiencia de compra.
+- **Proveedores externos:** consultas técnicas y seguimiento de las integraciones necesarias para el funcionamiento de la plataforma.
+
+El equipo utilizará GitHub y GitHub Projects para registrar tareas, asignar responsables y dar seguimiento a las actividades de desarrollo.
+
+#### 4. Restricciones del Proyecto
+
+Durante el desarrollo de KomoYa se deberán considerar diferentes restricciones que pueden influir en su alcance, planificación y ejecución.
+
+**Restricciones Técnicas:**
+
+- El sistema será desarrollado utilizando tecnologías como Laravel, PHP, JavaScript y PostgreSQL.
+- La plataforma dependerá de servicios externos para procesar pagos y emitir comprobantes electrónicos.
+- Será necesario contar con una infraestructura web segura y compatible con HTTPS.
+- El sistema deberá contar con mecanismos de autenticación y autorización para proteger la información de los usuarios.
+
+**Restricciones Económicas:**
+
+- El proyecto deberá desarrollarse considerando un presupuesto limitado.
+- Se deberán evaluar los costos de alojamiento, dominio, servicios externos y mantenimiento.
+- Las comisiones de las pasarelas de pago pueden influir en la rentabilidad de las operaciones.
+
+**Restricciones Operativas:**
+
+- Durante la primera versión, el servicio de entregas será administrado exclusivamente por KomoYa.
+- La disponibilidad de los productos dependerá de la información proporcionada por cada comercio.
+- La cobertura del servicio estará limitada a las zonas establecidas por la administración.
+- Los tiempos de entrega dependerán de la ubicación de los establecimientos y de la disponibilidad del servicio logístico.
+
+**Restricciones de Tiempo:**
+
+- El desarrollo académico se realizará durante el III Cuatrimestre de 2026.
+- Las funcionalidades serán organizadas y desarrolladas mediante Sprints.
+- Se dará prioridad a las funcionalidades necesarias para disponer de una primera versión funcional del sistema.
+
+#### 5. Riesgos Iniciales del Proyecto
+
+Se identifican los siguientes riesgos que podrían afectar el desarrollo o funcionamiento de KomoYa:
+
+| ID  | Riesgo                                                      | Impacto estimado | Medida preventiva                                                                      |
+| :-: | :---------------------------------------------------------- | :--------------: | :------------------------------------------------------------------------------------- |
+| R01 | Dificultades en la integración con las pasarelas de pago.   |       Alto       | Realizar pruebas de integración en entornos de prueba antes de habilitar pagos reales. |
+| R02 | Fallos o interrupciones de los servicios externos.          |       Alto       | Implementar registros de errores y mecanismos de recuperación.                         |
+| R03 | Información desactualizada del inventario de los comercios. |       Alto       | Validar la disponibilidad de los productos antes de confirmar las compras.             |
+| R04 | Retrasos en el desarrollo de funcionalidades.               |      Medio       | Priorizar las funcionalidades esenciales y realizar seguimiento mediante Sprints.      |
+| R05 | Baja participación de comercios locales.                    |       Alto       | Establecer comunicación con comercios interesados y validar sus necesidades.           |
+| R06 | Dificultades en la coordinación de entregas.                |      Medio       | Definir zonas de cobertura, tarifas y procedimientos de entrega.                       |
+| R07 | Problemas de seguridad o acceso no autorizado.              |       Alto       | Implementar autenticación, autorización y validaciones de seguridad.                   |
+
+Los riesgos identificados serán revisados durante el desarrollo del proyecto para determinar si requieren nuevas acciones preventivas o correctivas.
 
 ### Sección 04: Ciclo de vida del proyecto y primer Sprint
 
-#### 1. Ciclo de vida
+#### 1. Mapa del Ciclo de Vida del Proyecto
 
-Trabajaremos de forma incremental con Sprints de dos semanas. Iniciaremos con la definición del alcance y la arquitectura, después construiremos las funcionalidades por prioridad. Al finalizar cada Sprint revisaremos el incremento, las dificultades y los ajustes del backlog.
+- **Enfoque del Ciclo de Vida (Híbrido):** Se utilizará un enfoque híbrido. Emplearemos una **fase predictiva** al inicio para definir la arquitectura base del sistema (bases de datos y seguridad), ya que son elementos predecibles. Paralelamente, utilizaremos un **enfoque adaptativo** durante la ejecución para integrar módulos que requieren validación constante (pasarelas de pago y logística de envíos).
+- **Fases del Proyecto:**
+  1.  **Inicio:** Definición del problema, conceptualización del MVP, selección de comercios locales e inicio del _Project Charter_.
+  2.  **Planificación:** Diseño de la arquitectura, estructuración de la base de datos y creación del _Product Backlog_ inicial.
+  3.  **Ejecución (Iterativa):** Desarrollo del software mediante Sprints. Construcción del entorno, seguridad, catálogo, carrito de compras y pasarela de pago.
+  4.  **Monitoreo y Control:** Pruebas de integración, validación de dependencias externas y ajustes continuos en las _Sprint Reviews_.
+  5.  **Cierre:** Despliegue en producción, demostración (Demo) y entrega del Expediente del Proyecto.
 
-Organizaremos el proyecto en inicio, planificación, ejecución, seguimiento y cierre.
+---
 
-#### 2. Primer Sprint
+#### 2. Planificación del Primer Sprint
 
-- **Inicio de planificación:**
-- **Duración:** dos semanas, del 30/09/2026 al 13/10/2026.
-- **Sprint Goal:** establecer el acceso a la plataforma y los permisos de sus usuarios.
-- **Historias:** HU-01a y HU-01b, con un total estimado de 5 puntos.
-- **Capacidad:** 8 horas de equipo por Sprint.
+- **Duración del Sprint:** 2 semanas.
+- **Sprint Goal:** Establecer los cimientos técnicos de la plataforma configurando el entorno de desarrollo y construyendo los módulos fundamentales de autenticación (Login), seguridad de rutas y navegación básica (Dashboard).
 
-### Sección 05: Backlog inicial y Sprint Backlog
+**Sprint Backlog:**
 
-#### 1. Backlog inicial
+|   ID   | Tarea / Historia a desarrollar                          | Prioridad |
+| :----: | :------------------------------------------------------ | :-------: |
+| **1**  | Configurar el entorno de desarrollo del proyecto.       |   Alta    |
+| **3**  | Crear la interfaz gráfica del Login.                    |   Alta    |
+| **4**  | Implementar la validación de credenciales.              |   Alta    |
+| **5**  | Implementar el manejo de sesiones.                      |   Alta    |
+| **6**  | Desarrollar la funcionalidad de cerrar sesión (Logout). |   Alta    |
+| **7**  | Diseñar la interfaz gráfica del Dashboard.              |   Alta    |
+| **9**  | Proteger las rutas para usuarios autenticados.          |   Alta    |
+| **8**  | Implementar la navegación principal del Dashboard.      |   Media   |
+| **10** | Mostrar información básica del usuario en el Dashboard. |   Media   |
 
-| ID | Historia de usuario / necesidad | Prioridad |
-| :--- | :--- | :--- |
-| HU-01 | Como administrador, quiero gestionar accesos y roles para proteger el sistema. | Alta |
-| HU-02 | Como comercio, quiero gestionar mis ofertas e inventario para mantenerlos actualizados. | Alta |
-| HU-03 | Como cliente, quiero consultar productos y disponibilidad para comparar opciones. | Alta |
-| HU-04 | Como cliente, quiero reunir productos de distintos comercios en un carrito para realizar una compra. | Alta |
-| HU-05 | Como cliente, quiero realizar un pago unificado para completar mi pedido. | Alta |
-| HU-06 | Como cliente, quiero conocer el costo del envío antes de aprobar mi compra. | Alta |
-| HU-07 | Como cliente, quiero recibir avisos y comprobantes de mi pedido. | Media |
-| HU-08 | Como cliente, quiero consultar el historial y estado de mis pedidos. | Media |
+- **Justificación de selección:** Se eligió atacar estas historias primero porque representan la base técnica indispensable del sistema. No se puede avanzar a la programación de módulos de ventas o perfiles de comercio sin antes tener un entorno funcional y un sistema de autenticación seguro y probado que controle los accesos al Dashboard.
 
-#### 2. Sprint Backlog 1
+### Sección 05: Backlog inicial, Sprint Backlog y Mecanismo de Seguimiento
 
-| Tarea | Historia | Actividad | Responsable | Horas |
-| :--- | :--- | :--- | :--- | ---: |
-| S1-T01 | HU-01a | Configurar entorno y usuarios de prueba | Ambos | 1 |
-| S1-T02 | HU-01a | Implementar acceso, salida y recuperación de cuenta | Yunior | 2 |
-| S1-T03 | HU-01b | Implementar permisos y navegación por rol | Jose Alejandro | 2 |
-| S1-T04 | HU-01a, HU-01b | Revisar acceso y permisos | Ambos | 1,5 |
-| S1-T05 | HU-01a, HU-01b | Planificar, revisar y actualizar documentación | Ambos | 1,5 |
-| **Total** | | | | **8** |
+#### 1. Backlog Inicial (Product Backlog)
 
-Seleccionamos estas historias porque el acceso y los permisos son necesarios para desarrollar los módulos de clientes, comercios y administración.
+Lista de alto nivel con las historias de usuario y requerimientos principales para alcanzar el MVP de KomoYa, priorizados por valor de negocio:
 
-#### 3. Seguimiento
+|    ID     | Historia de Usuario / Requerimiento                                                      | Prioridad |
+| :-------: | :--------------------------------------------------------------------------------------- | :-------: |
+| **HU-01** | Como Administrador, quiero gestionar los accesos y roles (Admin, Cliente, Comercio).     |   Alta    |
+| **HU-02** | Como Comercio, quiero registrar, editar y controlar las existencias de mis productos.    |   Alta    |
+| **HU-03** | Como Cliente, quiero explorar el catálogo de productos y ver su disponibilidad.          |   Alta    |
+| **HU-04** | Como Cliente, quiero agregar productos de distintos comercios a un carrito único.        |   Alta    |
+| **HU-05** | Como Cliente, quiero procesar el pago unificado mediante Tilopay o PayPal.               |   Alta    |
+| **HU-06** | Como Administrador, quiero que el sistema calcule la distancia y tarifa de envío (OSRM). |   Media   |
+| **HU-07** | Como Sistema, quiero notificar los pedidos y emitir facturas electrónicas (FacturaEnCR). |   Media   |
 
-Utilizaremos GitHub Projects para organizar tareas en Backlog, Por hacer, En progreso, En revisión y Terminado. Relacionaremos cada tarea y commit con su historia y revisaremos los avances al finalizar cada Sprint.
+#### 2. Sprint Backlog (Sprint 2: Gestión de Catálogo y Carrito)
 
-### Sección 06: Alcance, Product Backlog priorizado y criterios de aceptación
+**Sprint Goal:** Permitir a los comercios administrar su inventario y a los clientes agregar productos a un carrito unificado con validación de existencias.
 
-#### 1. Alcance
+| ID Tarea | Descripción de la Tarea (Desglose técnico)                                |  Estado   | Estimación |
+| :------: | :------------------------------------------------------------------------ | :-------: | :--------: |
+| **T-01** | Crear modelos, migraciones y _seeders_ para Productos y Categorías.       | Por hacer |   3 hrs    |
+| **T-02** | Desarrollar el CRUD para que los Comercios administren su inventario.     | Por hacer |   5 hrs    |
+| **T-03** | Diseñar la interfaz del catálogo (Vista del Cliente) con filtros básicos. | Por hacer |   4 hrs    |
+| **T-04** | Crear la lógica del Carrito de Compras en la base de datos/sesión.        | Por hacer |   4 hrs    |
+| **T-05** | Implementar validación de _stock_ al agregar un producto al carrito.      | Por hacer |   2 hrs    |
 
-Incluiremos acceso y roles, catálogo central, ofertas por comercio, búsqueda, carrito multicomercio, confirmación de existencias, aprobación del pedido, cálculo de envío, pagos, seguimiento y comprobantes.
+#### 3. Mecanismo de Seguimiento
 
-Dejaremos fuera de esta primera versión las aplicaciones móviles nativas, el seguimiento GPS en tiempo real, la distribución automática de fondos y la gestión de entregas independientes por comercio.
+Para asegurar la transparencia y la adaptación continua durante el proyecto, el equipo utilizará las siguientes estrategias de control:
 
-#### 2. Product Backlog priorizado
+- **Tablero Kanban (GitHub Projects o Trello):** Se gestionará el flujo de tareas mediante un tablero visual con las columnas: _Backlog_, _Por Hacer (To Do)_, _En Progreso (In Progress)_, _En Revisión (Review)_ y _Terminado (Done)_.
+- **Daily Scrum (Sincronización):** Reuniones cortas de seguimiento para responder tres preguntas clave: ¿Qué se logró desde la última reunión?, ¿Qué se hará a continuación? y ¿Existen bloqueos técnicos?
+- **Trazabilidad en el Repositorio:** Todo el código subido a GitHub mediante _commits_ o _Pull Requests_ deberá incluir la referencia al ID de la tarea en la que se está trabajando (por ejemplo: `feat: validación de stock en carrito T-05`).
 
-Dividimos las historias iniciales en funcionalidades más pequeñas. Conservamos su ID principal y utilizamos letras para identificar cada división. Presentamos el orden, los puntos, las prioridades y las dependencias en la matriz de la sección 07.
+### Sección 06: Declaración de alcance, Product Backlog priorizado y criterios de aceptación
 
-#### 3. Criterios de aceptación
+#### 1. Declaración de Alcance del Proyecto
 
-| ID | Criterios de aceptación |
-| :--- | :--- |
-| HU-01a | El usuario puede ingresar, cerrar sesión y recuperar su cuenta; rechazamos credenciales incorrectas. |
-| HU-01b | Cada rol accede únicamente a sus funciones; un comercio no modifica información de otro. |
-| HU-02a | La administración publica los productos centrales y revisa las sugerencias antes de aprobarlas. |
-| HU-02b | Cada comercio administra sus ofertas, precios y existencias sin alterar el catálogo central ni ofertas ajenas. |
-| HU-03 | La búsqueda muestra productos, comercios y precios disponibles. |
-| HU-04a | El carrito admite varios comercios y actualiza los subtotales al cambiar cantidades. |
-| HU-04b | Cada comercio confirma cantidades y precios; reservamos las cantidades confirmadas y excluimos los productos agotados. |
-| HU-04c | El cliente aprueba el total antes del pago; al vencer los 15 minutos de aprobación liberamos las reservas. |
-| HU-08a | Registramos quién modifica el estado del pedido, cuándo lo hace y el motivo. |
-| HU-06a | Calculamos cobertura y recorrido considerando origen, comercios y cliente. |
-| HU-06b | El envío incorpora distancia y recargos; las cargas especiales requieren cotización manual antes de aprobar y pagar. |
-| HU-05a | El comprobante SINPE queda pendiente hasta verificar el movimiento bancario y su monto. |
-| HU-07a | Cada participante recibe los avisos correspondientes a su pedido. |
-| HU-05b | Confirmamos el pago Tilopay mediante una respuesta validada del proveedor y evitamos registros duplicados. |
-| HU-05d | Guardamos la tasa CRC/USD utilizada y contamos con una tasa de respaldo. |
-| HU-05c | PayPal cobra el monto aprobado en USD y confirmamos la captura antes de marcar el pedido como pagado. |
-| HU-08b | Las compras comienzan después del pago y podemos registrar la programación y el avance de la entrega. |
-| HU-08c | El cliente consulta únicamente sus pedidos y su historial. |
-| HU-07b | El cliente recibe un resumen y accede de forma autorizada a los comprobantes. |
-| HU-07c | El cliente elige factura o tiquete; conservamos sus datos fiscales y el estado de emisión del proveedor. |
+**¿Qué incluye el proyecto (In-Scope)?**
 
-### Sección 07: Planificación temporal, estimaciones y costos
+El proyecto contempla el desarrollo y despliegue de la primera versión funcional (MVP) de la plataforma web KomoYa. El alcance abarca:
 
-#### 1. Estimación de historias
+- Módulo de autenticación y gestión de tres roles diferenciados: Administrador (operador logístico), Cliente y Comercio.
+- Panel administrativo para comercios que permita registrar, editar y controlar las existencias de sus productos.
+- Catálogo multicomercio y carrito de compras unificado con validación de existencias y reserva temporal de productos por 15 minutos mediante procesos en segundo plano (_scheduler_).
+- Módulo de _checkout_ (pago unificado) integrado con Tilopay (colones) y PayPal (dólares), sincronizando automáticamente el tipo de cambio de venta del BCCR (indicador 318).
+- Cálculo automatizado de distancias y tarifas de envío mediante OSRM y geocodificación (tarifa base de ₡350/km, cobro mínimo de ₡1.000 y radio máximo de cobertura de 50 km).
+- Integración con FacturaEnCR para la emisión automática de comprobantes electrónicos correspondientes al servicio de entrega (_express_).
 
-Utilizaremos planning poker con la escala **1, 2, 3, 5, 8, 13 y 21**. Compararemos complejidad, esfuerzo e incertidumbre de cada historia y discutiremos las diferencias antes de asignar sus puntos.
+**¿Qué NO incluye el proyecto (Out-of-Scope)?**
 
-Tomamos **HU-05a: pago SINPE verificado**, de **3 puntos**, como historia de referencia. Incluye adjuntar un comprobante, mantener el pago pendiente y permitir su verificación o rechazo.
+Para mantener el enfoque en el lanzamiento del MVP durante el cuatrimestre, quedan fuera del alcance:
 
-La siguiente matriz recoge nuestra estimación inicial para revisar mediante planning poker.
+- Desarrollo de aplicaciones móviles nativas para iOS o Android (la plataforma será web responsiva).
+- Gestión de entregas independientes por parte de cada comercio (en esta versión toda la logística es centralizada por el administrador).
+- Rastreo GPS en tiempo real del mensajero sobre un mapa interactivo (el seguimiento se manejará mediante estados del pedido: _Pendiente_, _En preparación_, _En camino_, _Entregado_).
+- Módulos avanzados de inteligencia de negocios o analítica predictiva de ventas.
 
-#### 2. Matriz de Estimación
-| Orden | ID | Historia resumida | Épica | Puntos | Prioridad | Dependencias | Sprint |
-| ---: | :--- | :--- | :--- | ---: | :--- | :--- | ---: |
-| 1 | HU-01a | Acceso, salida y recuperación | Seguridad | 3 | Alta | — | 1 |
-| 2 | HU-01b | Roles y permisos | Seguridad | 2 | Alta | HU-01a | 1 |
-| 3 | HU-02a | Catálogo central y moderación | Catálogo | 5 | Alta | HU-01b | 2 |
-| 4 | HU-02b | Ofertas e inventario por comercio | Catálogo | 5 | Alta | HU-02a | 3 |
-| 5 | HU-03 | Búsqueda y consulta de ofertas | Compra | 3 | Alta | HU-02b | 4 |
-| 6 | HU-04a | Carrito multicomercio | Compra | 2 | Alta | HU-03 | 4 |
-| 7 | HU-04b | Subórdenes, confirmación y reservas | Compra | 5 | Alta | HU-04a | 5 |
-| 8 | HU-04c | Aprobación y vencimientos | Compra | 3 | Alta | HU-04b | 6 |
-| 9 | HU-08a | Auditoría e intervención del operador | Operación | 2 | Alta | HU-04b | 6 |
-| 10 | HU-06a | Cobertura y ruta con paradas | Logística | 3 | Alta | HU-04c | 7 |
-| 11 | HU-06b | Recargos y cotización manual | Logística | 2 | Alta | HU-06a | 7 |
-| 12 | HU-05a | Pago SINPE verificado | Pagos | 3 | Alta | HU-04c, HU-06b | 8 |
-| 13 | HU-07a | Notificaciones | Documentos | 2 | Media | HU-08a | 8 |
-| 14 | HU-05b | Pago Tilopay en CRC | Pagos | 5 | Alta | HU-05a | 9 |
-| 15 | HU-05d | Conversión CRC/USD | Pagos | 2 | Alta | HU-04c | 10 |
-| 16 | HU-05c | Pago PayPal en USD | Pagos | 3 | Alta | HU-05d | 10 |
-| 17 | HU-08b | Compras, entrega y programación | Operación | 3 | Alta | HU-05a, HU-08a | 11 |
-| 18 | HU-08c | Historial de pedidos del cliente | Operación | 2 | Media | HU-08b | 11 |
-| 19 | HU-07b | Resumen y comprobantes privados | Documentos | 3 | Media | HU-08b | 12 |
-| 20 | HU-07c | Conexión fiscal configurable | Documentos | 2 | Media | HU-07b | 12 |
-| | **Total** | **20 historias hoja** | | **60** | | | |
+---
 
-| Épica | Total de puntos |
-| :--- | ---: |
-| Seguridad | 5 |
-| Catálogo | 10 |
-| Compra | 13 |
-| Logística | 5 |
-| Pagos | 13 |
-| Operación | 7 |
-| Documentos | 7 |
-| **Total** | **60** |
+#### 2. Product Backlog Priorizado
 
+La siguiente tabla presenta las historias de usuario del MVP ordenadas por prioridad de negocio y dependencia técnica (de mayor a menor urgencia):
 
-#### 3. Historias que requieren división
+|   Prioridad   |    ID     | Historia de Usuario / Requerimiento                                                                                                                    |
+| :-----------: | :-------: | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1 (Alta)**  | **HU-01** | Como Administrador, quiero gestionar los usuarios y roles (Admin, Cliente, Comercio) para controlar el acceso y seguridad del sistema.                 |
+| **2 (Alta)**  | **HU-02** | Como Comercio, quiero administrar mi inventario (crear, editar y actualizar existencias de productos) para mantener mi oferta al día.                  |
+| **3 (Alta)**  | **HU-03** | Como Cliente, quiero explorar el catálogo, comparar precios y agregar productos de distintos comercios a un carrito único.                             |
+| **4 (Alta)**  | **HU-04** | Como Cliente, quiero que el sistema valide y reserve las existencias de mi carrito antes de confirmar el pago.                                         |
+| **5 (Alta)**  | **HU-05** | Como Cliente, quiero pagar mi compra unificada de forma segura mediante Tilopay (colones) o PayPal (dólares).                                          |
+| **6 (Media)** | **HU-06** | Como Administrador, quiero que el sistema calcule automáticamente la distancia y el costo de envío hacia la dirección del cliente.                     |
+| **7 (Media)** | **HU-07** | Como Administrador, quiero que el sistema genere y envíe automáticamente la factura electrónica del servicio de envío y las notificaciones del pedido. |
+| **8 (Baja)**  | **HU-08** | Como Cliente, quiero consultar el historial y estado actual de mis pedidos realizados.                                                                 |
 
-| Historia inicial | Puntos de sus divisiones | Tratamiento |
-| :--- | ---: | :--- |
-| HU-02: productos y ofertas | 10 | Dividimos en catálogo central y ofertas por comercio. |
-| HU-04: carrito y confirmación | 10 | Dividimos en carrito, confirmación y aprobación. |
-| HU-05: pagos | 13 | Dividimos en SINPE, Tilopay, conversión y PayPal. |
+---
 
-Las historias de más de 8 puntos quedan divididas en la matriz. Contabilizamos únicamente sus divisiones para obtener los 60 puntos del backlog.
+#### 3. Criterios de Aceptación
 
-#### 4. Supuestos y riesgos de la estimación
+Para verificar que cada incremento cumple con las reglas de negocio definidas, se establecen los siguientes criterios de aceptación para las funcionalidades críticas:
 
-- Estimamos con una disponibilidad de 2 horas semanales por integrante.
-- Consideramos el uso de librerías y componentes estándar para autenticación, pagos y documentos.
-- Las integraciones dependen de contar con acceso a los servicios y ambientes de prueba.
-- La facturación, la confirmación de inventario y los pagos pueden requerir más trabajo del previsto.
-- Revisaremos las estimaciones cuando cambien los requisitos o identifiquemos nuevas dificultades.
+**Para HU-04 (Validación y reserva de existencias en carrito):**
 
-#### 5. Velocidad inicial
+- **Criterio 1:** Si un cliente intenta agregar una cantidad superior al _stock_ disponible en el comercio, el sistema debe impedir la acción y mostrar una alerta clara.
+- **Criterio 2:** Al confirmar el paso hacia el pago, el sistema debe bloquear temporalmente las unidades seleccionadas durante un máximo de 15 minutos.
+- **Criterio 3:** Si transcurren los 15 minutos sin confirmación de pago, el _scheduler_ debe liberar automáticamente la reserva y reintegrar el _stock_ al inventario del comercio.
 
-Para nuestra planificación utilizamos una velocidad inicial de **5 puntos por Sprint**, con un rango de **3 a 8 puntos**. Cada Sprint durará dos semanas y contará con 8 horas de equipo.
+**Para HU-05 (Pago unificado y conversión de moneda):**
 
-Actualizaremos la velocidad con los puntos de historias terminadas y aceptadas. Después de tres Sprints utilizaremos el promedio de los últimos tres para ajustar las fechas y la distribución del trabajo.
+- **Criterio 1:** Si el cliente elige pagar en dólares mediante PayPal, el sistema debe aplicar el tipo de cambio de venta vigente obtenido del indicador 318 del BCCR (o la tasa manual de respaldo si el servicio externo no responde).
+- **Criterio 2:** Una orden únicamente cambiará al estado _Pagado_ cuando el _webhook_ de Tilopay o PayPal confirme la transacción exitosa.
 
-#### 6. Sprints necesarios
+**Para HU-06 (Cálculo automatizado de envío con OSRM):**
 
-| Escenario | Velocidad | Sprints necesarios | Duración | Final estimado |
-| :--- | ---: | ---: | :--- | :--- |
-| Mayor velocidad | 8 puntos | 8 | 16 semanas | 19/01/2027 |
-| Base | 5 puntos | 12 | 24 semanas | 16/03/2027 |
-| Menor velocidad | 3 puntos | 20 | 40 semanas | 06/07/2027 |
+- **Criterio 1:** El sistema debe calcular la distancia vial desde el punto de origen configurado hasta la ubicación del cliente mediante OSRM.
+- **Criterio 2:** Para distancias donde el cálculo sea inferior a la base mínima, el sistema debe aplicar la tarifa mínima de ₡1.000.
+- **Criterio 3:** Para distancias regulares dentro de cobertura, el costo será de ₡350 por kilómetro recorrido.
+- **Criterio 4:** Si la ubicación del cliente supera el radio máximo de 50 km, el sistema debe bloquear el envío e indicar que está fuera de cobertura.
 
-Proyectamos entre **8 y 20 Sprints**, con un escenario base de **12 Sprints** para completar los 60 puntos. Ajustaremos la distribución de las historias según la velocidad y sus dependencias.
+**Para HU-07 (Facturación electrónica y notificaciones):**
 
-#### 7. Cronograma de Entregas / Release Plan
-| Sprint | Inicio | Fin / demo | Historias | Puntos | Incremento |
-| ---: | :--- | :--- | :--- | ---: | :--- |
-| 1 | 30/09/2026 | 13/10/2026 | HU-01a, HU-01b | 5 | Acceso y permisos por rol |
-| 2 | 14/10/2026 | 27/10/2026 | HU-02a | 5 | Catálogo central moderado |
-| 3 | 28/10/2026 | 10/11/2026 | HU-02b | 5 | Ofertas e inventario por comercio |
-| 4 | 11/11/2026 | 24/11/2026 | HU-03, HU-04a | 5 | Consulta pública y carrito multicomercio |
-| 5 | 25/11/2026 | 08/12/2026 | HU-04b | 5 | Subórdenes, confirmación parcial y reservas |
-| 6 | 09/12/2026 | 22/12/2026 | HU-04c, HU-08a | 5 | Aprobación, plazos y auditoría |
-| 7 | 23/12/2026 | 05/01/2027 | HU-06a, HU-06b | 5 | Ruta, cobertura y tarifa logística |
-| 8 | 06/01/2027 | 19/01/2027 | HU-05a, HU-07a | 5 | SINPE y notificaciones |
-| 9 | 20/01/2027 | 02/02/2027 | HU-05b | 5 | Pago en CRC con Tilopay |
-| 10 | 03/02/2027 | 16/02/2027 | HU-05d, HU-05c | 5 | Conversión y pago PayPal |
-| 11 | 17/02/2027 | 02/03/2027 | HU-08b, HU-08c | 5 | Compra, entrega programada e historial |
-| 12 | 03/03/2027 | 16/03/2027 | HU-07b, HU-07c | 5 | Resumen, comprobantes y conexión fiscal |
+- **Criterio 1:** Una vez confirmado el pago, una tarea en cola (_queue worker_) debe enviar el correo de confirmación al cliente y gestionar la emisión del comprobante fiscal mediante FacturaEnCR utilizando el código CABYS configurado.
 
-
-Al finalizar cada Sprint realizaremos una revisión con el Product Owner. Consideramos trabajo continuo desde el 30 de septiembre; cualquier pausa modificará las fechas del cronograma.
-
-| Hito | Fecha | Entrega a revisar |
-| :--- | :--- | :--- |
-| Revisión con comercios | 10/11/2026 | Catálogo y ofertas |
-| Demostración del carrito | 24/11/2026 | Compra multicomercio |
-| Revisión del pedido confirmado | 22/12/2026 | Confirmación, aprobación y auditoría |
-| Demostración de pago local | 19/01/2027 | SINPE y notificaciones |
-| Revisión del release | 16/03/2027 | Flujo completo y comprobantes |
-
-#### 8. Costos estimados
-
-Para estimar el costo utilizamos un valor de **₡5.000 por hora de trabajo** y un presupuesto de **₡10.000 por Sprint** para alojamiento, almacenamiento, correo y dominio. Reservamos un 10% para imprevistos.
-
-| Concepto | Por Sprint |
-| :--- | ---: |
-| Trabajo del equipo: 8 horas | ₡40.000 |
-| Infraestructura y servicios | ₡10.000 |
-| Subtotal | ₡50.000 |
-| Reserva para imprevistos | ₡5.000 |
-| **Total** | **₡55.000** |
-
-| Escenario | Costo estimado total |
-| :--- | ---: |
-| 8 Sprints | ₡440.000 |
-| **12 Sprints, escenario base** | **₡660.000** |
-| 20 Sprints | ₡1.100.000 |
-
-
-
-#### 9. Seguimiento del release
-
-Utilizaremos un burndown para revisar los puntos pendientes al finalizar cada Sprint. Compararemos el avance con los 60 puntos iniciales y actualizaremos el cronograma cuando cambie el alcance o la velocidad.
-
-### Sección 08: Riesgos y adquisiciones
-
-#### 1. Matriz de riesgos
-
-| ID | Riesgo | Probabilidad | Impacto | Acción | Responsable |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| R01 | Retrasos al integrar las pasarelas de pago | Alta | Alto | Solicitar accesos con anticipación y realizar pruebas por separado. | Yunior |
-| R02 | Interrupciones de servicios externos | Media | Alto | Contar con respaldo para el tipo de cambio y revisión manual de cotizaciones. | Jose Alejandro |
-| R03 | Diferencias entre inventario publicado y disponible | Alta | Alto | Confirmar cantidades con el comercio y reservar existencias. | Ambos |
-| R04 | Trabajo mayor a la capacidad disponible | Alta | Alto | Dividir historias y ajustar alcance y fechas. | Jose Alejandro |
-| R05 | Poca participación de comercios o clientes | Media | Medio | Coordinar revisiones y recoger observaciones durante las demostraciones. | Yunior |
-| R06 | Errores en la tarifa de entrega | Media | Alto | Probar límites y recargos; revisar cargas especiales antes del pago. | Jose Alejandro |
-| R07 | Acceso no autorizado a información | Media | Alto | Proteger rutas y archivos y comprobar permisos por rol. | Ambos |
-| R08 | Dificultades en facturación electrónica | Alta | Alto | Validar datos e integración con el proveedor antes de habilitar la emisión. | Yunior |
-| R09 | Fallos en procesos programados | Media | Alto | Revisar colas, vencimientos y reintentos. | Jose Alejandro |
-| R10 | Registros duplicados de pagos | Media | Alto | Validar referencias y probar notificaciones repetidas. | Ambos |
-
-Revisaremos los riesgos al finalizar cada Sprint y registraremos las acciones necesarias para reducir su efecto en el proyecto.
-
-#### 2. Adquisiciones y servicios
-
-| Recurso | Necesidad | Criterio de selección | Momento de gestión | Responsable |
-| :--- | :--- | :--- | :--- | :--- |
-| Alojamiento, PostgreSQL y almacenamiento | Publicar y mantener la plataforma | Compatibilidad con Laravel, HTTPS, respaldo y costo | Sprint 1 | Jose Alejandro |
-| Dominio y correo | Acceso público y notificaciones | Disponibilidad, entrega de mensajes y costo | Sprint 1 | Yunior |
-| Rutas y geocodificación | Calcular cobertura y recorrido | Cobertura de la zona, disponibilidad y límites de uso | Antes del Sprint 7 | Jose Alejandro |
-| SINPE Móvil | Recibir y verificar pagos locales | Cuenta operativa y procedimiento de verificación | Antes del Sprint 8 | Yunior |
-| Tilopay y PayPal | Procesar pagos electrónicos | Compatibilidad, ambiente de pruebas y condiciones comerciales | Antes de los Sprints 9 y 10 | Yunior |
-| FacturaEnCR | Emitir comprobantes electrónicos | Integración, datos fiscales y costo del servicio | Antes del Sprint 12 | Yunior |
-
-Compararemos las opciones antes de contratar. Incluimos los servicios de apoyo en el presupuesto de infraestructura y revisaremos cualquier cargo adicional de las integraciones antes de adquirirlas.
+---
