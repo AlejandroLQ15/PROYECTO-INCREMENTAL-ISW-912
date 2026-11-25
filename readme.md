@@ -374,3 +374,40 @@ Antes de cerrar cada módulo, comprobaremos su funcionamiento mediante las sigui
 | **Cálculo de rutas y envío** | Verificación de distancias con OSRM, cálculo de tarifas y recargos, bloqueo fuera del radio de 50 km y flujo de cotización manual.                                |
 | **Pagos y moneda**           | Simulación en ambiente de pruebas de _webhooks_ de Tilopay y PayPal (incluyendo envíos duplicados), verificación de comprobantes SINPE y uso de tasa de respaldo. |
 | **Avisos y comprobantes**    | Ejecución del _queue worker_ para confirmar el envío de notificaciones por correo, acceso privado a documentos y respuesta del proveedor fiscal.                  |
+
+### Sección 10: Comunicación y responsabilidades del equipo
+
+#### 1. Matriz de responsabilidades
+
+Para distribuir el trabajo de forma clara entre los dos integrantes del equipo, aplicamos una matriz RACI (*R: Responsable de ejecutar, **A: Aprueba / rinde cuentas, **C*: Consultado / apoya en revisión):
+
+| Área / Actividad del proyecto | Jose Alejandro (Scrum Master / Dev) | Yunior (Product Owner / Dev) |
+| :--- | :---: | :---: |
+| Gestión y priorización del Product Backlog | C | R / A |
+| Facilitación Scrum, tablero y control de impedimentos | R / A | C |
+| Infraestructura, roles, seguridad, rutas y colas | R | A |
+| Catálogo central, ofertas y carrito multicomercio | R | R |
+| Integración de pagos (SINPE, Tilopay, PayPal) y facturación | C | R / A |
+| Validación con comercios y usuarios piloto | C | R |
+| Pruebas de calidad, revisión de código y expediente | R | R |
+
+#### 2. Plan de comunicación
+
+Definimos los siguientes canales y frecuencias para mantener la alineación durante el desarrollo:
+
+| Participantes | Canal | Frecuencia | Propósito |
+| :--- | :--- | :--- | :--- |
+| Equipo de desarrollo | WhatsApp / GitHub | Continua (2 veces por semana) | Sincronizar avances, reportar bloqueos y revisar Pull Requests. |
+| Scrum Team (Sprint Review / Planning) | Reunión virtual | Cada 2 semanas (fin de Sprint) | Demostrar el incremento, actualizar el Burndown y planificar el siguiente Sprint. |
+| Docente (Rudy Barboza) | Sesión de clase / Entorno virtual | Semanal / Por entrega | Presentar avances del expediente y aplicar retroalimentación. |
+| Comercios y clientes piloto | Contacto directo / Pruebas de uso | Según hitos del cronograma | Validar flujos de catálogo, carrito y entrega, y recopilar mejoras. |
+
+#### 3. Working Agreements (Acuerdos de trabajo)
+
+Para sostener el ritmo de trabajo con una capacidad de 2 horas semanales por integrante, acordamos las siguientes reglas internas:
+
+- *Gestión del tiempo:* Cada integrante organizará sus 2 horas semanales comprometidas; si surge un imprevisto, avisará con al menos 24 horas de anticipación para reajustar las tareas del Sprint.
+- *Uso de GitHub y trazabilidad:* Todo avance se registrará en GitHub Projects y cada commit o Pull Request llevará el ID de su historia correspondiente antes de integrarse a la rama principal.
+- *Revisión cruzada:* Ningún módulo se dará por terminado sin que el otro integrante valide su funcionamiento y cumplimiento con el Definition of Done.
+- *Comunicación ante bloqueos:* Si una tarea o integración externa presenta fallos que superan lo estimado, se notificará en menos de 12 horas para buscar una solución conjunta o activar un respaldo.
+- *Actualización del expediente:* Al cierre de cada semana de clase, ambos revisaremos y completaremos la sección correspondiente del documento antes de su entrega.
