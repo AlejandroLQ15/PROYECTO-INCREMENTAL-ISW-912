@@ -444,3 +444,39 @@ Para la presentación oficial en la Semana 13, ejecutaremos el siguiente recorri
 3. **Compra multicomercio y reservas:** Búsqueda de artículos en el catálogo público, armado de un carrito con productos de distintos comercios, confirmación de existencias y visualización del plazo de reserva de 15 minutos.
 4. **Cálculo de envío y pago unificado:** Validación de dirección dentro del radio de 50 km, cálculo automático de tarifa logística, aprobación del total y procesamiento de pago en ambiente de pruebas.
 5. **Seguimiento operativo y comprobantes:** Gestión del estado del pedido desde el panel del administrador, verificación de notificaciones en cola y consulta del resumen y comprobante del pedido desde la cuenta del cliente.
+
+### Sección 12: Producto / Incremento final y cierre del proyecto
+
+#### 1. Resumen del incremento final entregado
+
+Al cierre del proyecto, cumplimos con el **Product Goal** establecido mediante el desarrollo e integración de la primera versión funcional (MVP) de **KomoYa**. La plataforma web permite a los habitantes de Pital y zonas aledañas comparar precios entre comercios locales, consolidar productos de distintos establecimientos en un carrito único, confirmar existencias, calcular el envío centralizado y completar el pago de forma segura.
+
+El incremento final cubre las 7 épicas planificadas en el _Product Backlog_:
+
+| Épica          |           Historias            |   Estado   | Funcionalidad entregada en el producto                                                                                                                                                 |
+| :------------- | :----------------------------: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Seguridad**  |         HU-01a, HU-01b         | Completado | Autenticación, recuperación de cuenta, protección de rutas y navegación diferenciada para administrador, comercio y cliente.                                                           |
+| **Catálogo**   |         HU-02a, HU-02b         | Completado | Catálogo central administrado y gestión independiente de ofertas, precios y existencias por cada comercio.                                                                             |
+| **Compra**     | HU-03, HU-04a, HU-04b, HU-04c  | Completado | Búsqueda pública, carrito multicomercio, subórdenes por tienda, confirmación de inventario y reservas con vencimiento automático a los 15 minutos.                                     |
+| **Logística**  |         HU-06a, HU-06b         | Completado | Validación de cobertura en radio de 50 km, cálculo de recorridos y tarifas con OSRM, recargos y flujo de cotización manual.                                                            |
+| **Pagos**      | HU-05a, HU-05b, HU-05c, HU-05d | Completado | Pago unificado con verificación de comprobantes SINPE Móvil, _checkout_ en colones con Tilopay y cobro en dólares con PayPal usando tipo de cambio BCCR (con tasa manual de respaldo). |
+| **Operación**  |     HU-08a, HU-08b, HU-08c     | Completado | Bitácora de auditoría, programación de compras y entregas consolidadas por el operador e historial de pedidos para el cliente.                                                         |
+| **Documentos** |     HU-07a, HU-07b, HU-07c     | Completado | Notificaciones transaccionales en cola, acceso autorizado a comprobantes y conexión fiscal configurable con FacturaEnCR.                                                               |
+
+#### 2. Entregables de cierre y artefactos del producto
+
+Como respaldo de la entrega oficial y la demostración en vivo, consolidamos los siguientes artefactos:
+
+- **Repositorio y código fuente:** Aplicación desarrollada en Laravel, PHP, PostgreSQL, Tailwind CSS y Alpine.js, organizada en GitHub con trazabilidad de _commits_ y pruebas automatizadas (`php artisan test`) sobre SQLite en memoria.
+- **Entorno operativo y despliegue:** Configuración lista para producción con soporte HTTPS (guías para Railway con Neon PostgreSQL y Laravel Cloud), datos de demostración (`SEED_DEMO_DATA=true`) y ejecución de procesos en segundo plano (`queue:work` y `schedule:work`).
+- **Documentación técnica:** Especificaciones del MVP, manual técnico, guía de facturación electrónica y manual de despliegue integrados en la carpeta `docs/` del proyecto.
+- **Expediente del Proyecto:** Documento integral actualizado desde la Sección 00 hasta la Sección 12, alineado con el tablero en GitHub Projects y el incremento demostrado.
+
+#### 3. Lecciones aprendidas y cierre del proyecto
+
+El desarrollo incremental de KomoYa dejó aprendizajes clave para la gestión y construcción de soluciones de software:
+
+- **División de historias y ritmo sostenible:** Fragmentar requerimientos amplios (como el flujo de carrito multicomercio y las pasarelas de pago) en historias pequeñas de máximo 5 puntos permitió mantener un avance constante y verificable acorde con la disponibilidad del equipo.
+- **Resiliencia ante integraciones externas:** Incorporar mecanismos de respaldo operativo —como la tasa de cambio manual CRC/USD frente al BCCR, la verificación manual de SINPE Móvil y la cotización manual de cargas especiales— evitó bloqueos y aseguró la continuidad del servicio.
+- **Automatización para la integridad de datos:** Delegar los vencimientos de reservas de 15 minutos, el envío de correos y los reintentos fiscales a colas y tareas programadas garantizó estabilidad y evitó inconsistencias de inventario o cobros duplicados.
+- **Evolución futura (Post-MVP):** Como siguientes pasos fuera del alcance de esta primera versión, se proyecta incorporar seguimiento en tiempo real de entregas, métricas avanzadas de ventas para los comercios afiliados y aplicaciones móviles nativas.
