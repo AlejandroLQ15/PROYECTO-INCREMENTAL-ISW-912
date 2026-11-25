@@ -6,6 +6,7 @@
 
 **Bachillerato en Ingeniería en Software**
 
+Ciudad Quesada, San Carlos, Alajuela / III Cuatrimestre, 2026
 <br><br>
 
 **Curso:**
@@ -22,7 +23,6 @@ Rudy Barboza
 
 ## KomoYa – Marketplace Multicomercio
 
-Ciudad Quesada, San Carlos, Alajuela / III Cuatrimestre, 2026
 <br><br>
 
 **Organización / Cliente:**
@@ -51,11 +51,11 @@ En Pital y sus alrededores, adquirir productos de distintos comercios representa
 
 #### 2. Oportunidad
 
-Con Komo-Ya buscamos reunir los precios, existencias y ofertas de los comercios locales en una plataforma donde los clientes puedan comparar productos, realizar una compra multicomercio y recibir una entrega consolidada.
+Con KomoYa buscamos reunir los precios, existencias y ofertas de los comercios locales en una plataforma donde los clientes puedan comparar productos, realizar una compra multicomercio y recibir una entrega consolidada.
 
 #### 3. Product Goal
 
-Desarrollar una primera versión web de Komo-Ya que permita consultar productos, reunir ofertas de varios comercios en un carrito, aprobar el total confirmado, realizar un pago unificado y consultar el estado de la entrega.
+Desarrollar una primera versión web de KomoYa que permita consultar productos, reunir ofertas de varios comercios en un carrito, aprobar el total confirmado, realizar un pago unificado y consultar el estado de la entrega.
 
 #### 4. Descripción del proyecto
 
@@ -141,7 +141,7 @@ Seleccionamos estas historias porque el acceso y los permisos son necesarios par
 
 #### 3. Seguimiento
 
-Utilizaremos GitHub Projects para organizar tareas en Backlog, Por hacer, En progreso, En revisión y Terminado. Relacionaremos cada tarea y commit con su historia y revisaremos los avances al finalizar cada Sprint.
+Organizaremos el trabajo mediante listas de tareas por Sprint y comunicación directa entre ambos integrantes. Relacionaremos cada avance con su historia de usuario en los commits del repositorio de GitHub y revisaremos el cumplimiento de criterios al finalizar cada Sprint.
 
 ### Sección 06: Alcance, Product Backlog priorizado y criterios de aceptación
 
@@ -308,7 +308,9 @@ Para estimar el costo utilizamos un valor de **₡5.000 por hora de trabajo** y 
 
 #### 9. Seguimiento del release
 
-Utilizaremos un burndown para revisar los puntos pendientes al finalizar cada Sprint. Compararemos el avance con los 60 puntos iniciales y actualizaremos el cronograma cuando cambie el alcance o la velocidad.
+Revisaremos el avance al finalizar cada Sprint comparando las historias terminadas y aceptadas contra los 60 puntos iniciales del backlog, ajustando las prioridades o fechas cuando cambie el alcance o la velocidad real del equipo.
+
+> **Nota aclaratoria sobre el cronograma:** La proyección anterior responde a una estimación inicial conservadora basada en una disponibilidad estricta de 4 horas semanales de equipo (8 horas por Sprint). No obstante, mediante una mayor dedicación efectiva y el aprovechamiento de componentes estándar durante la ejecución, el equipo logró adelantar el desarrollo e integrar la totalidad de las funcionalidades del MVP dentro del III Cuatrimestre de 2026, cumpliendo con el alcance previsto para el cierre académico del curso.
 
 ### Sección 08: Riesgos y adquisiciones
 
@@ -361,7 +363,7 @@ Para considerar una historia de usuario como terminada al finalizar un Sprint, d
 - [ ] El código fue probado localmente sin errores de ejecución ni de compilación (`npm run build`).
 - [ ] Las pruebas automatizadas (`php artisan test`) y la revisión de formato (`pint --test`) pasan correctamente.
 - [ ] Los cambios fueron subidos a GitHub vinculados al ID de la historia y revisados entre ambos integrantes del equipo.
-- [ ] La historia fue revisada con el Product Owner, movida a _Terminado_ en GitHub Projects y documentada en el expediente si aplica.
+- [ ] La historia fue verificada con el Product Owner, integrada en la rama principal de GitHub y documentada en el expediente si aplica.
 
 #### 3. Estrategia de validación
 
@@ -379,7 +381,7 @@ Antes de cerrar cada módulo, comprobaremos su funcionamiento mediante las sigui
 
 #### 1. Matriz de responsabilidades
 
-Para distribuir el trabajo de forma clara entre los dos integrantes del equipo, aplicamos una matriz RACI (_R: Responsable de ejecutar, **A: Aprueba / rinde cuentas, **C_: Consultado / apoya en revisión):
+Para distribuir el trabajo de forma clara entre los dos integrantes del equipo, aplicamos una matriz RACI (**R:** Responsable de ejecutar, **A:** Aprueba / rinde cuentas, **C:** Consultado / apoya en revisión):
 
 | Área / Actividad del proyecto                               | Jose Alejandro (Scrum Master / Dev) | Yunior (Product Owner / Dev) |
 | :---------------------------------------------------------- | :---------------------------------: | :--------------------------: |
@@ -395,19 +397,19 @@ Para distribuir el trabajo de forma clara entre los dos integrantes del equipo, 
 
 Definimos los siguientes canales y frecuencias para mantener la alineación durante el desarrollo:
 
-| Participantes                         | Canal                             | Frecuencia                     | Propósito                                                                         |
-| :------------------------------------ | :-------------------------------- | :----------------------------- | :-------------------------------------------------------------------------------- |
-| Equipo de desarrollo                  | WhatsApp / GitHub                 | Continua (2 veces por semana)  | Sincronizar avances, reportar bloqueos y revisar Pull Requests.                   |
-| Scrum Team (Sprint Review / Planning) | Reunión virtual                   | Cada 2 semanas (fin de Sprint) | Demostrar el incremento, actualizar el Burndown y planificar el siguiente Sprint. |
-| Docente (Rudy Barboza)                | Sesión de clase / Entorno virtual | Semanal / Por entrega          | Presentar avances del expediente y aplicar retroalimentación.                     |
-| Comercios y clientes piloto           | Contacto directo / Pruebas de uso | Según hitos del cronograma     | Validar flujos de catálogo, carrito y entrega, y recopilar mejoras.               |
+| Participantes                         | Canal                             | Frecuencia                     | Propósito                                                                               |
+| :------------------------------------ | :-------------------------------- | :----------------------------- | :-------------------------------------------------------------------------------------- |
+| Equipo de desarrollo                  | WhatsApp / GitHub                 | Continua (2 veces por semana)  | Sincronizar avances, reportar bloqueos y revisar Pull Requests.                         |
+| Scrum Team (Sprint Review / Planning) | Reunión virtual                   | Cada 2 semanas (fin de Sprint) | Demostrar el incremento, revisar historias completadas y planificar el siguiente Sprint |
+| Docente (Rudy Barboza)                | Sesión de clase / Entorno virtual | Semanal / Por entrega          | Presentar avances del expediente y aplicar retroalimentación.                           |
+| Comercios y clientes piloto           | Contacto directo / Pruebas de uso | Según hitos del cronograma     | Validar flujos de catálogo, carrito y entrega, y recopilar mejoras.                     |
 
 #### 3. Working Agreements (Acuerdos de trabajo)
 
 Para sostener el ritmo de trabajo con una capacidad de 2 horas semanales por integrante, acordamos las siguientes reglas internas:
 
 - _Gestión del tiempo:_ Cada integrante organizará sus 2 horas semanales comprometidas; si surge un imprevisto, avisará con al menos 24 horas de anticipación para reajustar las tareas del Sprint.
-- _Uso de GitHub y trazabilidad:_ Todo avance se registrará en GitHub Projects y cada commit o Pull Request llevará el ID de su historia correspondiente antes de integrarse a la rama principal.
+- _Uso de GitHub y trazabilidad:_ Todo avance de código se subirá al repositorio en GitHub indicando en los mensajes de commit o Pull Requests la funcionalidad trabajada antes de integrarse a la rama principal.
 - _Revisión cruzada:_ Ningún módulo se dará por terminado sin que el otro integrante valide su funcionamiento y cumplimiento con el Definition of Done.
 - _Comunicación ante bloqueos:_ Si una tarea o integración externa presenta fallos que superan lo estimado, se notificará en menos de 12 horas para buscar una solución conjunta o activar un respaldo.
 - _Actualización del expediente:_ Al cierre de cada semana de clase, ambos revisaremos y completaremos la sección correspondiente del documento antes de su entrega.
@@ -430,8 +432,7 @@ Durante el avance de los Sprints y las revisiones con el Product Owner, registra
 
 La trazabilidad entre la planificación del expediente y el producto construido se respalda mediante los siguientes artefactos:
 
-- **Repositorio y control de versiones (GitHub):** Historial de _commits_ asociados a los identificadores de historias (`HU-01a` a `HU-08c`), organización por ramas y _Pull Requests_ revisados entre ambos integrantes.
-- **Seguimiento ágil (GitHub Projects):** Tablero Kanban actualizado con el flujo de tarjetas (_Backlog_, _Por hacer_, _En progreso_, _En revisión_, _Terminado_) y control del gráfico _Burndown_ sobre el total de 60 puntos.
+- **Repositorio y control de versiones (GitHub):** Disponible en `https://github.com/AlejandroLQ15/PROYECTO-INCREMENTAL-ISW-912`, con el historial de _commits_ y _Pull Requests_ realizados por ambos integrantes para las funcionalidades del sistema.
 - **Pruebas y calidad de código:** Ejecución satisfactoria de la suite de pruebas (`php artisan test`), verificación de formato (`php vendor/bin/pint --test`) y compilación de activos (`npm run build`), junto con los procesos `queue:work` y `schedule:work` activos.
 - **Documentación técnica del sistema:** Especificaciones y guías integradas en el repositorio (`docs/requisitos-marketplace-mvp.md`, `docs/manual-tecnico.md`, `docs/electronic-invoicing.md` y `docs/deployment-railway.md`).
 
@@ -470,7 +471,7 @@ Como respaldo de la entrega oficial y la demostración en vivo, consolidamos los
 - **Repositorio y código fuente:** Aplicación desarrollada en Laravel, PHP, PostgreSQL, Tailwind CSS y Alpine.js, organizada en GitHub con trazabilidad de _commits_ y pruebas automatizadas (`php artisan test`) sobre SQLite en memoria.
 - **Entorno operativo y despliegue:** Configuración lista para producción con soporte HTTPS (guías para Railway con Neon PostgreSQL y Laravel Cloud), datos de demostración (`SEED_DEMO_DATA=true`) y ejecución de procesos en segundo plano (`queue:work` y `schedule:work`).
 - **Documentación técnica:** Especificaciones del MVP, manual técnico, guía de facturación electrónica y manual de despliegue integrados en la carpeta `docs/` del proyecto.
-- **Expediente del Proyecto:** Documento integral actualizado desde la Sección 00 hasta la Sección 12, alineado con el tablero en GitHub Projects y el incremento demostrado.
+- **Expediente del Proyecto:** Documento integral actualizado desde la Sección 00 hasta la Sección 12, alineado con el código del repositorio y el incremento demostrado.
 
 #### 3. Lecciones aprendidas y cierre del proyecto
 
