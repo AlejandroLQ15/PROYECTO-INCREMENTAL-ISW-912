@@ -379,35 +379,68 @@ Antes de cerrar cada módulo, comprobaremos su funcionamiento mediante las sigui
 
 #### 1. Matriz de responsabilidades
 
-Para distribuir el trabajo de forma clara entre los dos integrantes del equipo, aplicamos una matriz RACI (*R: Responsable de ejecutar, **A: Aprueba / rinde cuentas, **C*: Consultado / apoya en revisión):
+Para distribuir el trabajo de forma clara entre los dos integrantes del equipo, aplicamos una matriz RACI (_R: Responsable de ejecutar, **A: Aprueba / rinde cuentas, **C_: Consultado / apoya en revisión):
 
-| Área / Actividad del proyecto | Jose Alejandro (Scrum Master / Dev) | Yunior (Product Owner / Dev) |
-| :--- | :---: | :---: |
-| Gestión y priorización del Product Backlog | C | R / A |
-| Facilitación Scrum, tablero y control de impedimentos | R / A | C |
-| Infraestructura, roles, seguridad, rutas y colas | R | A |
-| Catálogo central, ofertas y carrito multicomercio | R | R |
-| Integración de pagos (SINPE, Tilopay, PayPal) y facturación | C | R / A |
-| Validación con comercios y usuarios piloto | C | R |
-| Pruebas de calidad, revisión de código y expediente | R | R |
+| Área / Actividad del proyecto                               | Jose Alejandro (Scrum Master / Dev) | Yunior (Product Owner / Dev) |
+| :---------------------------------------------------------- | :---------------------------------: | :--------------------------: |
+| Gestión y priorización del Product Backlog                  |                  C                  |            R / A             |
+| Facilitación Scrum, tablero y control de impedimentos       |                R / A                |              C               |
+| Infraestructura, roles, seguridad, rutas y colas            |                  R                  |              A               |
+| Catálogo central, ofertas y carrito multicomercio           |                  R                  |              R               |
+| Integración de pagos (SINPE, Tilopay, PayPal) y facturación |                  C                  |            R / A             |
+| Validación con comercios y usuarios piloto                  |                  C                  |              R               |
+| Pruebas de calidad, revisión de código y expediente         |                  R                  |              R               |
 
 #### 2. Plan de comunicación
 
 Definimos los siguientes canales y frecuencias para mantener la alineación durante el desarrollo:
 
-| Participantes | Canal | Frecuencia | Propósito |
-| :--- | :--- | :--- | :--- |
-| Equipo de desarrollo | WhatsApp / GitHub | Continua (2 veces por semana) | Sincronizar avances, reportar bloqueos y revisar Pull Requests. |
-| Scrum Team (Sprint Review / Planning) | Reunión virtual | Cada 2 semanas (fin de Sprint) | Demostrar el incremento, actualizar el Burndown y planificar el siguiente Sprint. |
-| Docente (Rudy Barboza) | Sesión de clase / Entorno virtual | Semanal / Por entrega | Presentar avances del expediente y aplicar retroalimentación. |
-| Comercios y clientes piloto | Contacto directo / Pruebas de uso | Según hitos del cronograma | Validar flujos de catálogo, carrito y entrega, y recopilar mejoras. |
+| Participantes                         | Canal                             | Frecuencia                     | Propósito                                                                         |
+| :------------------------------------ | :-------------------------------- | :----------------------------- | :-------------------------------------------------------------------------------- |
+| Equipo de desarrollo                  | WhatsApp / GitHub                 | Continua (2 veces por semana)  | Sincronizar avances, reportar bloqueos y revisar Pull Requests.                   |
+| Scrum Team (Sprint Review / Planning) | Reunión virtual                   | Cada 2 semanas (fin de Sprint) | Demostrar el incremento, actualizar el Burndown y planificar el siguiente Sprint. |
+| Docente (Rudy Barboza)                | Sesión de clase / Entorno virtual | Semanal / Por entrega          | Presentar avances del expediente y aplicar retroalimentación.                     |
+| Comercios y clientes piloto           | Contacto directo / Pruebas de uso | Según hitos del cronograma     | Validar flujos de catálogo, carrito y entrega, y recopilar mejoras.               |
 
 #### 3. Working Agreements (Acuerdos de trabajo)
 
 Para sostener el ritmo de trabajo con una capacidad de 2 horas semanales por integrante, acordamos las siguientes reglas internas:
 
-- *Gestión del tiempo:* Cada integrante organizará sus 2 horas semanales comprometidas; si surge un imprevisto, avisará con al menos 24 horas de anticipación para reajustar las tareas del Sprint.
-- *Uso de GitHub y trazabilidad:* Todo avance se registrará en GitHub Projects y cada commit o Pull Request llevará el ID de su historia correspondiente antes de integrarse a la rama principal.
-- *Revisión cruzada:* Ningún módulo se dará por terminado sin que el otro integrante valide su funcionamiento y cumplimiento con el Definition of Done.
-- *Comunicación ante bloqueos:* Si una tarea o integración externa presenta fallos que superan lo estimado, se notificará en menos de 12 horas para buscar una solución conjunta o activar un respaldo.
-- *Actualización del expediente:* Al cierre de cada semana de clase, ambos revisaremos y completaremos la sección correspondiente del documento antes de su entrega.
+- _Gestión del tiempo:_ Cada integrante organizará sus 2 horas semanales comprometidas; si surge un imprevisto, avisará con al menos 24 horas de anticipación para reajustar las tareas del Sprint.
+- _Uso de GitHub y trazabilidad:_ Todo avance se registrará en GitHub Projects y cada commit o Pull Request llevará el ID de su historia correspondiente antes de integrarse a la rama principal.
+- _Revisión cruzada:_ Ningún módulo se dará por terminado sin que el otro integrante valide su funcionamiento y cumplimiento con el Definition of Done.
+- _Comunicación ante bloqueos:_ Si una tarea o integración externa presenta fallos que superan lo estimado, se notificará en menos de 12 horas para buscar una solución conjunta o activar un respaldo.
+- _Actualización del expediente:_ Al cierre de cada semana de clase, ambos revisaremos y completaremos la sección correspondiente del documento antes de su entrega.
+
+### Sección 11: Decisiones, cambios y evidencias de integración final
+
+#### 1. Bitácora de decisiones y cambios
+
+Durante el avance de los Sprints y las revisiones con el Product Owner, registramos los siguientes ajustes para mantener la viabilidad técnica y operativa del proyecto:
+
+|    ID     | Decisión o cambio aplicado                                                                        | Motivo                                                                                | Impacto en el proyecto                                                                          |
+| :-------: | :------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------- |
+| **DC-01** | División de historias complejas (`HU-02`, `HU-04`, `HU-05`) en historias hoja de máximo 5 puntos. | Adecuar las entregas a la capacidad real del equipo (8 horas por Sprint).             | Permitió cerrar incrementos funcionales cada dos semanas sin arrastrar tareas incompletas.      |
+| **DC-02** | Priorización de SINPE Móvil verificado (`HU-05a`) antes de Tilopay y PayPal.                      | Validar el flujo completo de compra y entrega con un medio de pago local inmediato.   | Adelantó las pruebas integrales del ciclo de pedido sin depender de credenciales externas.      |
+| **DC-03** | Incorporación de tasa de cambio manual CRC/USD de respaldo (`HU-05d`).                            | Mitigar posibles interrupciones o demoras en la consulta del indicador 318 del BCCR.  | Garantizó la continuidad del _checkout_ en dólares con PayPal ante fallos del servicio externo. |
+| **DC-04** | Cotización manual de envío para cargas especiales (`HU-06b`).                                     | Cubrir pedidos con volumen o peso fuera de la tarifa estándar calculada por OSRM.     | Evitó pérdidas operativas en entregas complejas sin frenar la automatización de rutas normales. |
+| **DC-05** | Ejecución de pruebas automatizadas con SQLite en memoria y colas en segundo plano.                | Agilizar la validación continua (`php artisan test`) y desacoplar correos y facturas. | Redujo errores de regresión y mejoró los tiempos de respuesta al confirmar un pedido.           |
+
+#### 2. Evidencias de gestión e integración
+
+La trazabilidad entre la planificación del expediente y el producto construido se respalda mediante los siguientes artefactos:
+
+- **Repositorio y control de versiones (GitHub):** Historial de _commits_ asociados a los identificadores de historias (`HU-01a` a `HU-08c`), organización por ramas y _Pull Requests_ revisados entre ambos integrantes.
+- **Seguimiento ágil (GitHub Projects):** Tablero Kanban actualizado con el flujo de tarjetas (_Backlog_, _Por hacer_, _En progreso_, _En revisión_, _Terminado_) y control del gráfico _Burndown_ sobre el total de 60 puntos.
+- **Pruebas y calidad de código:** Ejecución satisfactoria de la suite de pruebas (`php artisan test`), verificación de formato (`php vendor/bin/pint --test`) y compilación de activos (`npm run build`), junto con los procesos `queue:work` y `schedule:work` activos.
+- **Documentación técnica del sistema:** Especificaciones y guías integradas en el repositorio (`docs/requisitos-marketplace-mvp.md`, `docs/manual-tecnico.md`, `docs/electronic-invoicing.md` y `docs/deployment-railway.md`).
+
+#### 3. Guion de preparación de la demostración (Demo)
+
+Para la presentación oficial en la Semana 13, ejecutaremos el siguiente recorrido funcional en vivo utilizando los usuarios de demostración configurados en el sistema:
+
+1. **Acceso y control de roles:** Ingreso con `admin@komoya.test`, `supermercado@komoya.test` y `cliente@komoya.test` para evidenciar la separación de vistas y permisos protegidos.
+2. **Gestión de ofertas e inventario:** Actualización de precios y existencias de productos desde el panel del comercio (`ferreteria@komoya.test` y `farmacia@komoya.test`).
+3. **Compra multicomercio y reservas:** Búsqueda de artículos en el catálogo público, armado de un carrito con productos de distintos comercios, confirmación de existencias y visualización del plazo de reserva de 15 minutos.
+4. **Cálculo de envío y pago unificado:** Validación de dirección dentro del radio de 50 km, cálculo automático de tarifa logística, aprobación del total y procesamiento de pago en ambiente de pruebas.
+5. **Seguimiento operativo y comprobantes:** Gestión del estado del pedido desde el panel del administrador, verificación de notificaciones en cola y consulta del resumen y comprobante del pedido desde la cuenta del cliente.
